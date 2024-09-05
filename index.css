@@ -1,0 +1,113 @@
+.header{
+    display:flex;
+    justify-content:space-between;
+    border:2px solid black;
+}
+.logo{
+    width:100px;
+}
+.logo-container{
+    width: 200px;
+}
+.nav-items{
+    padding: 0px 20px;
+}
+
+.nav-items > ul{
+    font-size: 24px;
+    display:flex;
+}
+
+.nav-items>ul>li{
+    padding:10px;
+    margin: 10px;
+}
+
+.res-card{
+    margin:5px;
+    padding: 5px;
+    width: 200px;
+    padding: 5px;
+    height: 500px;
+}
+
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.res-container{
+   display:flex;
+   flex-wrap: wrap;
+}
+
+.res-logo{
+    width: 195px;
+    height: 195px;
+}
+.filter-btn{
+    margin: 10px;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-card{
+    margin:10px;
+    width:200px;
+    height:400px;
+    background-color: #f0f0f0;
+}
+
+.login-btn{
+    height:25px;
+    margin-top: 20px;
+    cursor:pointer;
+}
+
+.search{
+    margin: 10px;
+}
+.search-box{
+    width: 35%;
+    height: 30px;
+    border-radius: 25px;
+    margin-right: 5px;
+    margin-left: 30%;
+}
+
+.filter-btn{
+    display: flex;
+}
+
+.restaurant-menu{
+    margin: 20px;
+}
+
+.res-cuisines{
+    padding: 10px;
+    margin-left: 33%;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 400px;
+}
+.res-name{
+    margin-left: 425px;
+    margin-top: 40px;
+}
+.menu{
+    text-align: center;
+    margin-top: 40px;
+}
+.res-menu{
+    padding: 10px;
+    margin-left: 33%;
+}
+
+.user-class{
+    padding: 10px;
+    border:1px solid black;
+}
+
