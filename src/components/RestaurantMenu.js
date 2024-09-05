@@ -1,6 +1,7 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 
 const RestaurantMenu=()=>{
@@ -16,27 +17,23 @@ const RestaurantMenu=()=>{
 
     const{ itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
+
+    const categories=resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+
+   // console.log(categories);
+
     return (
-        <div className="restaurant-menu">
-            <div className="res-name">
-            <h2>{name}</h2>
+        
+        <div className="text-center">
+            <h2 className="font-bold pt-10 pb-4 text-2xl">{name}</h2>
+            <div className="border m-auto p-4 w-6/12 border-black shadow-lg rounded-xl text-left">
+            <h3 className="font-bold text-lg">{avgRating}({totalRatingsString}) - {costForTwoMessage}</h3>
+            <h5 className="text-orange-500 font-bold underline">{cuisines.join(", ")}</h5>
+            <h6 className="font-bold text-sm">{locality},{areaName}</h6>
+            <h6 className="font-bold text-sm">{sla.lastMileTravelString} | {sla.slaString}</h6>
             </div>
-            <div className="res-cuisines">
-            <h4>{avgRating}({totalRatingsString}) - {costForTwoMessage}</h4>
-            <h4>{cuisines.join(", ")}</h4>
-            <h4>{locality},{areaName}</h4>
-            <h4>{sla.lastMileTravelString} | {sla.slaString}</h4>
-            </div>
-            <div className="menu"><h3>MENU</h3></div>
-            <div className="res-menu">
-            <ul>
-                {itemCards.map((item)=> 
-                      <p key={item.card.info.id}>
-                       <li> {item.card.info.name}</li> - Rs.{item.card.info.price/100}
-                      </p>
-                    )
-                }
-            </ul>
+            <div className="p-4">
+                {categories.map((category)=><RestaurantCategory key={category?.card?.card.title} data={category?.card?.card} />)}
             </div>
         </div>
     );

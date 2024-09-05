@@ -5,10 +5,10 @@ const RestaurantCard=(props)=>{
 
     const{name,cuisines,avgRating,costForTwo,sla}=resData?.info
     return(
-        <div className="res-card" style={{backgroundColor:"#f0f0f0"}}>
-            <img className="res-logo" alt="res-logo" src= {CDN_URL+resData.info.cloudinaryImageId}/>
-            <h2>{name}</h2>
-            <h4>{cuisines.join(", ")}</h4>
+        <div className="p-2 m-2 w-[200px] bg-gray-100 rounded-lg hover:border border-solid border-black ">
+            <img className="rounded-lg" alt="res-logo" src= {CDN_URL+resData.info.cloudinaryImageId}/>
+            <h2 className="font-bold py-2">{name}</h2>
+            <h4 className="font-semibold">{cuisines.join(", ")}</h4>
             <h4>{avgRating} stars</h4>
             <h4>{costForTwo}</h4>
             <h4>{sla.deliveryTime} minutes</h4>
