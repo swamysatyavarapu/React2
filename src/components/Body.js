@@ -3,14 +3,16 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import RestaurantIndex from "./RestaurantIndex";
 
 
 const Body=()=>{
 
 const [listOfRestaurant, setListOfRestaurant]=useState([]);
 const [filterRestaurant,setFilterRestaurant]=useState([]);
+const [restaurantIndex,setRestaurantIndex]=useState([]);
 
- const[searchText,setSearchText]=useState("")
+const[searchText,setSearchText]=useState("")
 
 useEffect(()=>{
     fetchData();
@@ -23,9 +25,11 @@ const fetchData = async()=>{
 
         const json=await data.json();
 
+        console.log(json);
 
        setListOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
        setFilterRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+       setRestaurantIndex(json?.data?.cards[0]);
 }
 
 
@@ -35,45 +39,42 @@ const fetchData = async()=>{
    {
         return <h1> No internet connection, Please check your internet connection......!</h1>;
    }
-/*
-//  Conditional Rendering...
-    if(listOfRestaurant.length===0)
-    {
-        return <Shimmer/>;
-    }
-*/
 
     return listOfRestaurant.length===0 ? (<Shimmer/>) : 
     (
         <div className="body">
-            <div className="search">
-                <input type="Text" id="searchItem" className="border border-solid border-black ml-[450] w-72 rounded-lg" placeholder="Search For Restaurant" value={searchText} 
-                      onChange={(e)=>{
-                            setSearchText(e.target.value);
-                      }}
-                />
-                <button className="ml-5 bg-blue-100 rounded-lg font-medium border px-1" onClick={()=>{
+            <div className="border-b">
+                    <RestaurantIndex data={restaurantIndex}/>
+            </div>
+            <div className="flex p-2 m-2 ">
+                <div className="filter ml-[200px] ">
+                     <button className=" bg-black text-white shadow-gray-300 border p-1 border-soild border-black rounded-lg" onClick={()=>{
+                         const filterListed=filterRestaurant.filter((restuarant)=>
+                             restuarant.info.avgRating>4.3
+                             );
+                          setFilterRestaurant(filterListed);
+                        }}
+                     >  
+                     Top Rated Restaurant
+                    </button>
+                </div>
+                <div className="search">
+                    <input type="Text" id="searchItem" className="border border-solid border-black ml-[150px] w-72 rounded-lg p-1" placeholder="Search For Restaurant" value={searchText} 
+                          onChange={(e)=>{
+                              setSearchText(e.target.value);
+                         }}
+                    />
+                    <button className="ml-5 bg-black text-white rounded-lg font-medium border p-1" onClick={()=>{
                     const filterRestaurant=listOfRestaurant.filter((res)=>
                             res.info.name.toLowerCase().includes(searchText.toLowerCase())
-                    );
-
-                    setFilterRestaurant(filterRestaurant);
-                }}>
+                        );
+                            setFilterRestaurant(filterRestaurant);
+                         }}>
                     Search
-                </button>
+                   </button>
+                </div>
             </div>
-            <div className="filter">
-                <button className="m-4 bg-gray-100 border border-soild border-black rounded-lg p-1 " onClick={()=>{
-                    const filterListed=filterRestaurant.filter((restuarant)=>
-                            restuarant.info.avgRating>4.3
-                    );
-                    setFilterRestaurant(filterListed);
-                }}
-                >  
-                Top Rated Restaurant
-                </button>
-            </div>
-            <div className="flex flex-wrap p-2 m-2">
+            <div className="flex flex-wrap p-6 m-7 gap-y-3">
                {filterRestaurant.map((restuarant)=>(
                 <Link
                    key={restuarant.info.id} 
