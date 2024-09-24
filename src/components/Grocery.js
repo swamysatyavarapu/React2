@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import GroceryCard from "./GroceryCard";
-//import resGrocery from "../utils/resGrocery";
 
 
 
 const Grocery=()=>{
 
     const[listOfGrocery,setListOfGrocery]=useState([])
-    //const[resListGrocery,setResListGrocery]=useState(resGrocery);
 
     useEffect(()=>{
         fetchGroceryData();

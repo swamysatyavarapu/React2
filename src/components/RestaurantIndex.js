@@ -10,7 +10,6 @@ const RestaurantIndex=(props)=>{
 
    const indexImage = data?.card?.card?.gridElements?.infoWithStyle?.info;
 
-   console.log(indexImage);
 
     return(
         <div>

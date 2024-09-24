@@ -11,7 +11,6 @@ const Body=()=>{
 const [listOfRestaurant, setListOfRestaurant]=useState([]);
 const [filterRestaurant,setFilterRestaurant]=useState([]);
 const [restaurantIndex,setRestaurantIndex]=useState([]);
-
 const[searchText,setSearchText]=useState("")
 
 useEffect(()=>{
@@ -24,8 +23,6 @@ const fetchData = async()=>{
        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9428958&lng=77.7366242&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
         const json=await data.json();
-
-        console.log(json);
 
        setListOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
        setFilterRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -48,29 +45,29 @@ const fetchData = async()=>{
             </div>
             <div className="flex p-2 m-2 ">
                 <div className="filter ml-[200px] ">
-                     <button className=" bg-black text-white shadow-gray-300 border p-1 border-soild border-black rounded-lg" onClick={()=>{
+                     <button className="bg-gradient-to-l from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white hover:text-black font-bold p-2 w-[16rem] rounded-lg" onClick={()=>{
                          const filterListed=filterRestaurant.filter((restuarant)=>
                              restuarant.info.avgRating>4.3
                              );
                           setFilterRestaurant(filterListed);
                         }}
                      >  
-                     Top Rated Restaurant
+                     Top Rated Restaurants
                     </button>
                 </div>
-                <div className="search">
-                    <input type="Text" id="searchItem" className="border border-solid border-black ml-[150px] w-72 rounded-lg p-1" placeholder="Search For Restaurant" value={searchText} 
+                <div className="flex border-2 rounded-full justify-between shadow-md px-6 py-1 w-[32rem] ml-[3.4rem]">
+                    <input type="Text" id="searchItem" className= "focus:outline-none focus:border-transparent flex-grow text-left" placeholder="Search For Restaurant" value={searchText} 
                           onChange={(e)=>{
                               setSearchText(e.target.value);
                          }}
                     />
-                    <button className="ml-5 bg-black text-white rounded-lg font-medium border p-1" onClick={()=>{
+                    <button className="" onClick={()=>{
                     const filterRestaurant=listOfRestaurant.filter((res)=>
                             res.info.name.toLowerCase().includes(searchText.toLowerCase())
                         );
                             setFilterRestaurant(filterRestaurant);
                          }}>
-                    Search
+                    <img className="w-5" src="https://foodie-co.netlify.app/search.2220a127.svg"/>
                    </button>
                 </div>
             </div>

@@ -23,13 +23,13 @@ const RestaurantMenu=()=>{
 
     return (
         
-        <div className="text-center">
+        <div className="text-center justify-evenly shadow-2xl">
             <h2 className="font-bold pt-10 pb-4 text-2xl">{name}</h2>
-            <div className="border m-auto p-4 w-6/12 border-black shadow-lg rounded-xl text-left">
-            <h3 className="font-bold text-lg">{avgRating}({totalRatingsString}) - {costForTwoMessage}</h3>
-            <h5 className="text-orange-500 font-bold underline">{cuisines.join(", ")}</h5>
-            <h6 className="font-bold text-sm">{locality},{areaName}</h6>
-            <h6 className="font-bold text-sm">{sla.lastMileTravelString} | {sla.slaString}</h6>
+            <div className="border-4 border-gray-100 m-auto p-4 w-6/12 shadow-lg rounded-xl text-left">
+                 <h3 className="font-bold text-lg"><span className="w-3 px-1 h-5 m-1 rounded bg-green-600 text-white">★</span>{avgRating}({totalRatingsString}) - {costForTwoMessage}</h3>
+                 <h5 className="text-orange-500 font-bold underline">{cuisines.join(", ")}</h5>
+                 <h6 className="font-bold text-sm">{locality},{areaName}</h6>
+                 <h6 className="font-bold text-sm">{sla.lastMileTravelString} | {sla.slaString}</h6>
             </div>
             <div className="p-4">
                 {categories.map((category)=><RestaurantCategory key={category?.card?.card.title} data={category?.card?.card} />)}
